@@ -3,7 +3,7 @@
 > Customization of firebase in app message for Android
 > > The customization of firebase in app message for android following the article (https://firebase.google.com/docs/in-app-messaging/customize-messages?platform=android) was hard to decide from where to start. It should have to be done in the following way. 
 > > 1. At first, write your own implementation of the FirebaseInAppMessagingDisplay class. 
-```kotin
+```kotlin
 class FIAMDisplayImpl(
     private val app: Application, private val headlessInAppMessaging: FirebaseInAppMessaging,
     private val bindingWrapperFactory: BindingWrapperFactory,
@@ -76,10 +76,9 @@ class FIAMDisplayImpl(
             app.registerActivityLifecycleCallbacks(fiam)
         }
     }     
-    }
-
+}
 ```
->> Firebase in app message library register when application started. So to receive in app message in your own implementation register that implemenation with the headless Firebase In-App Messaging SDK. In the code block we register through FIAMDisplayImpl class's register method from the activity where we want to receive the in app message. As we message will be received after resume the activity so we register during onStart lifecycle of the activity.
+>> 2. Secondly, Firebase in app message library register when application started. So to receive in app message in your own implementation register that implemenation with the headless Firebase In-App Messaging SDK. In the code block we register through FIAMDisplayImpl class's register method from the activity where we want to receive the in app message. As we message will be received after resume the activity so we register during onStart lifecycle of the activity.
 ```kotlin 
     override fun onStart() {
         super.onStart()
