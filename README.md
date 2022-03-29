@@ -35,13 +35,10 @@ class FIAMDisplayImpl(
     override fun onActivityResumed(activity: Activity) {
         println("In app message called onActivityResumed")
         super.onActivityResumed(activity);
-        bindFiamToActivity(activity)
     }
 
     override fun onActivityPaused(activity: Activity) {
         println("In app message called onActivityPaused")
-        unbindFiamFromActivity(activity);
-        headlessInAppMessaging.removeAllListeners();
         super.onActivityPaused(activity);
     }
 
