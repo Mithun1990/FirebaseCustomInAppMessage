@@ -91,3 +91,4 @@ class FIAMDisplayImpl(
         )
     }
 ```
+>> Now, FIAMDisplayImpl class is ready to receive in app message. In the code block we only customize the image only in app message. We incerases the image size while shwwing. By the same procedure other three in app message can be customized. Please check the code block for details. Happy coding :)  
