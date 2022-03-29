@@ -34,11 +34,15 @@ class FIAMDisplayImpl(
 
     override fun onActivityResumed(activity: Activity) {
         println("In app message called onActivityResumed")
+        //Do your own code to receive in app message
+        //Details will be found in code block
         super.onActivityResumed(activity);
     }
 
     override fun onActivityPaused(activity: Activity) {
         println("In app message called onActivityPaused")
+         //Pause in app message receiver 
+        //Details will be found in code block
         super.onActivityPaused(activity);
     }
 
@@ -74,4 +78,17 @@ class FIAMDisplayImpl(
     }     
     }
 
+```
+>> Firebase in app message library register when application started. So to receive in app message in your own implementation register that implemenation with the headless Firebase In-App Messaging SDK. In the code block we register through FIAMDisplayImpl class's register method from the activity where we want to receive the in app message. As we message will be received after resume the activity so we register during onStart lifecycle of the activity.
+```kotlin 
+    override fun onStart() {
+        super.onStart()
+        FIAMDisplayImpl.register(
+            application,
+            FirebaseInAppMessaging.getInstance(),
+            BindingWrapperFactory(application),
+            FiamImageLoader(Glide.with(application)),
+            FiamWindowManager()
+        )
+    }
 ```
